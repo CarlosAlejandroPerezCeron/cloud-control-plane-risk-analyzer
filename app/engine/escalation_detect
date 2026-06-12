@@ -1,0 +1,16 @@
+def detect_escalation(actions):
+    escalation_patterns = [
+        "iam:PassRole",
+        "sts:AssumeRole",
+        "iam:CreatePolicy",
+        "iam:AttachRolePolicy",
+        "*"
+    ]
+
+    findings = []
+
+    for action in actions:
+        if action in escalation_patterns:
+            findings.append(f"Potential escalation via {action}")
+
+    return findings
